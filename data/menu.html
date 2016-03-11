@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html data-ember-extension="1">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>myUSF Admin Menu</title>
+    <style>
+    @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Lato';
+        height: 1300px;
+    }
+    
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    
+    h1 {
+        color: #AE841A;
+        margin-top: 0;
+        padding: 15px 5px 10px 10px;
+        position:fixed;
+        top:0;
+        z-index: 1;
+        background-color: #FFF;
+        width:100%;
+    }
+    
+    ul {
+        list-style-type: none;
+    }
+    
+    .accordionItem a {
+        display: block;
+        background-color: #F6F6F2;
+        padding: .7em;
+        color: #00543C;
+        text-decoration: none;
+    }
+    
+    .accordionItem a:hover {
+        background-color: #eee;
+    }
+    
+    .accordion dl:after,
+    .accordion-list:after {
+        content: "";
+        display: block;
+        height: 1em;
+        width: 100%;
+        background-color: #2ba659;
+    }
+    
+    .accordion dd,
+    .accordion__panel {
+        background-color: #eee;
+        font-size: 1.3em;
+        line-height: 1.5em;
+    }
+    
+    .accordion p {
+        padding: 1em .5em 1em .5em;
+    }
+    
+    .accordion {
+        position: relative;
+        background-color: #eee;
+    }
+    
+    .container {
+        width: 400px;
+        margin: 30px 0;
+        padding: 2em 0 2em 0;
+    }
+    
+    .accordionTitle,
+    .accordion__Heading {
+        background-color: #00805b;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 1.1em;
+        font-weight: 700;
+        padding: 1.5em;
+        display: block;
+        text-decoration: none;
+        color: #fff;
+        -webkit-transition: background-color 0.5s ease-in-out;
+        transition: background-color 0.5s ease-in-out;
+        border-bottom: 1px solid #00b37f;
+    }
+    
+    .accordionTitle:before,
+    .accordion__Heading:before {
+        content: "+";
+        font-size: 1.5em;
+        line-height: 0.5em;
+        float: left;
+        -webkit-transition: -webkit-transform 0.3s ease-in-out;
+        transition: -webkit-transform 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+    }
+    
+    .accordionTitle:hover,
+    .accordion__Heading:hover {
+        background-color: #00543C;
+    }
+    
+    .accordionTitleActive,
+    .accordionTitle.is-expanded {
+        background-color: #00543C;
+    }
+    
+    .accordionTitleActive:before,
+    .accordionTitle.is-expanded:before {
+        -webkit-transform: rotate(-225deg);
+        transform: rotate(-225deg);
+    }
+    
+    .accordionItem {
+        height: auto;
+        overflow: hidden;
+        max-height: 50em;
+        -webkit-transition: max-height 1s;
+        transition: max-height 1s;
+    }
+    
+    @media screen and (min-width: 48em) {
+        .accordionItem {
+            max-height: 15em;
+            -webkit-transition: max-height 0.5s;
+            transition: max-height 0.5s;
+        }
+    }
+    
+    .accordionItem.is-collapsed {
+        max-height: 0;
+    }
+    
+    .no-js .accordionItem.is-collapsed {
+        max-height: auto;
+    }
+    
+    .animateIn {
+        -webkit-animation: accordionIn 0.15s normal ease-in-out both 1;
+        animation: accordionIn 0.15s normal ease-in-out both 1;
+    }
+    
+    .animateOut {
+        -webkit-animation: accordionOut 0.15s alternate ease-in-out both 1;
+        animation: accordionOut 0.15s alternate ease-in-out both 1;
+    }
+    
+    @-webkit-keyframes accordionIn {
+        0% {
+            opacity: 0;
+            -webkit-transform: scale(0.9) rotateX(-60deg);
+            transform: scale(0.9) rotateX(-60deg);
+            -webkit-transform-origin: 50% 0;
+            transform-origin: 50% 0;
+        }
+        100% {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+    
+    @keyframes accordionIn {
+        0% {
+            opacity: 0;
+            -webkit-transform: scale(0.9) rotateX(-60deg);
+            transform: scale(0.9) rotateX(-60deg);
+            -webkit-transform-origin: 50% 0;
+            transform-origin: 50% 0;
+        }
+        100% {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+    
+    @-webkit-keyframes accordionOut {
+        0% {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+        100% {
+            opacity: 0;
+            -webkit-transform: scale(0.9) rotateX(-60deg);
+            transform: scale(0.9) rotateX(-60deg);
+        }
+    }
+    
+    @keyframes accordionOut {
+        0% {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+        100% {
+            opacity: 0;
+            -webkit-transform: scale(0.9) rotateX(-60deg);
+            transform: scale(0.9) rotateX(-60deg);
+        }
+    }
+    </style>
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+     -->
+
+</head>
+
+<body cz-shortcut-listen="true">
+    <h1>myUSF Admin Menu</h1>
+    <div class="container">
+        <div class="accordion">
+            <dl>
+                <dt>
+                    <a target="_blank" href="#accordion1" aria-expanded="false" aria-controls="accordion1" class="accordion-title accordionTitle js-accordionTrigger">Content</a>
+                </dt>
+                <dd class="accordion-content accordionItem is-collapsed" id="accordion1" aria-hidden="true">
+                    <a target="_blank" href="/admin/content">Content</a>
+                    <a target="_blank" href="/node/add">Add Content</a>
+                    <a target="_blank" href="/admin/content/file">Files</a>
+                    <a target="_blank" href="/admin/content/webform">Webforms</a>
+                </dd>
+                <dt>
+                    <a target="_blank" href="#accordion2" aria-expanded="false" aria-controls="accordion2" class="accordion-title accordionTitle js-accordionTrigger">Structure</a>
+                </dt>
+                <dd class="accordion-content accordionItem is-collapsed" id="accordion2" aria-hidden="true">
+                    <a target="_blank" href="/admin/structure">Structure</a>
+                    <a target="_blank" href="/admin/structure/block">Blocks</a>
+                    <a target="_blank" href="/admin/structure/types">Content Types</a>
+                    <a target="_blank" href="/admin/structure/defaultconfig">Default Config</a>
+                    <a target="_blank" href="/admin/structure/features">Features</a>
+                    <a target="_blank" href="/admin/structure/menu">Menus</a>
+                    <a target="_blank" href="/admin/structure/mini-panel">Mini Panels</a>
+                    <a target="_blank" href="/admin/structure/panelizer">Panelizer</a>
+                    <a target="_blank" href="/admin/panopoly">Panopoly</a>
+                    <a target="_blank" href="/admin/structure/taxonomy">Taxonomy</a>
+                    <a target="_blank" href="/admin/structure/views">Views</a>
+                </dd>
+                <dt>
+                    <a target="_blank" href="#accordion3" aria-expanded="false" aria-controls="accordion3" class="accordion-title accordionTitle js-accordionTrigger">Appearance</a>
+                </dt>
+                <dd class="accordion-content accordionItem is-collapsed" id="accordion3" aria-hidden="true">
+                    <a target="_blank" href="/admin/appearance">Appearance</a>
+                    <a target="_blank" href="/admin/appearance/settings">Settings</a>
+                    <a target="_blank" href="/admin/appearance/colorizer">Colorizer</a>
+                </dd>
+                <dt>
+                    <a target="_blank" href="#accordion4" aria-expanded="false" aria-controls="accordion4" class="accordion-title accordionTitle js-accordionTrigger">Modules</a>
+                </dt>
+                <dd class="accordion-content accordionItem is-collapsed" id="accordion4" aria-hidden="true">
+                    <a target="_blank" href="/admin/modules">Modules</a>
+                    <a target="_blank" href="/admin/modules/uninstall">Uninstall</a>
+                </dd>
+                <dt>
+                    <a target="_blank" href="#accordion5" aria-expanded="false" aria-controls="accordion5" class="accordion-title accordionTitle js-accordionTrigger">Configuration</a>
+                </dt>
+                <dd class="accordion-content accordionItem is-collapsed" id="accordion5" aria-hidden="true">
+                    <a target="_blank" href="/admin/config">Configuration</a>
+                    <a target="_blank" href="/admin/config/administration">Administration</a>
+                    <a target="_blank" href="/admin/config/content">Content</a>
+                    <a target="_blank" href="/admin/config/development">Development</a>
+                    <a target="_blank" href="/admin/config/media">Media</a>
+                    <a target="_blank" href="/admin/config/group">Group</a>
+                    <a target="_blank" href="/admin/config/people">People</a>
+                    <a target="_blank" href="/admin/config/search">Search</a>
+                    <a target="_blank" href="/admin/config/system">System</a>
+                    <a target="_blank" href="/admin/config/user-interface">User Interface</a>
+                    <a target="_blank" href="/admin/config/services">Services</a>
+                    <a target="_blank" href="/admin/config/workflow">Workflow</a>
+                </dd>
+                <dt>
+                    <a target="_blank" href="#accordion6" aria-expanded="false" aria-controls="accordion6" class="accordion-title accordionTitle js-accordionTrigger">People</a>
+                </dt>
+                <dd class="accordion-content accordionItem is-collapsed" id="accordion6" aria-hidden="true">
+                    <a target="_blank" href="/admin/people">People</a>
+                    <a target="_blank" href="/admin/people/create">Create User</a>
+                    <a target="_blank" href="/admin/people/cas/create">CAS User</a>
+                    <a target="_blank" href="/admin/people/permissions">Permissions</a>
+                    <a target="_blank" href="/admin/people/permissions/roles">Roles</a>
+                </dd>
+                <dt>
+                    <a target="_blank" href="#accordion7" aria-expanded="false" aria-controls="accordion7" class="accordion-title accordionTitle js-accordionTrigger">Reports</a>
+                </dt>
+                <dd class="accordion-content accordionItem is-collapsed" id="accordion7" aria-hidden="true">
+                    <a target="_blank" href="/admin/reports">Reports</a>
+                    <a target="_blank" href="/admin/reports/status">Status Report</a>
+                    <a target="_blank" href="/admin/reports/feeds">Feeds Log</a>
+                    <a target="_blank" href="/admin/reports/fields">Field List</a>
+                    <a target="_blank" href="/admin/reports/fields/views-fields">Used in Views</a>
+                    <a target="_blank" href="/admin/reports/views-plugins">Views Plugins</a>
+                </dd>
+                <dt>
+                    <a target="_blank" href="#accordion8" aria-expanded="false" aria-controls="accordion8" class="accordion-title accordionTitle js-accordionTrigger">Open Atrium</a>
+                </dt>
+                <dd class="accordion-content accordionItem is-collapsed" id="accordion8" aria-hidden="true">
+                    <a target="_blank" href="/admin/openatrium">Open Atrium</a>
+                    <a target="_blank" href="/admin/openatrium/setting">Config</a>
+                    <a target="_blank" href="/admin/openatrium/groups">Groups</a>
+                    <a target="_blank" href="/admin/openatrium/section-templates">Section Templates</a>
+                    <a target="_blank" href="/admin/openatrium/space-templates">Space Templates</a>
+                </dd>
+            </dl>
+        </div>
+    </div>
+</body>
+
+</html>
