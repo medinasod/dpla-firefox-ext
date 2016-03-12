@@ -15,7 +15,16 @@ var menuItem = contextMenu.Item({
       Request({
           url: DPLA,
           onComplete: function(response) {
-              console.log(response.json);
+              var json = response.json;
+            //   var items = json.docs;
+
+                    //var title = items[i].title;
+                    // var description = items[i].description;
+                    // console.log("Title: " + title + "\nDescription: " + description + "\n\n");
+               json.docs.sourceResource.forEach( function(item) {
+                    console.log(item.title + ' \n\n' + item.description + '\n\n\n\n');
+                });
+                    
           }
       }).get();
 
