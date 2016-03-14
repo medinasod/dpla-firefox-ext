@@ -1,10 +1,7 @@
 var title;
 var desc;
 var list;
-
-
-
-var titleTextNode;        // Create a text node
+var titleTextNode;   
 var descTextNode; 
 
 self.port.on("sendJSON", function(json) {
@@ -24,10 +21,6 @@ self.port.on("sendJSON", function(json) {
         node.appendChild(titleTextNode);                         // Append the text to <li>
         node.appendChild(descTextNode);                          // Append the text to <li>
         document.getElementById("myList").appendChild(node);     // Append <li> to <ul> with id="myList"
-        document.getElementById("myImgs").appendChild(imgTag);     
+        document.getElementById("myImgs").appendChild(imgTag);
     });
-});    
-
-
-
-// self.port.emit("receiveJSON", "hi from the content script");
+});

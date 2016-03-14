@@ -26,15 +26,11 @@ var menuItem = contextMenu.Item({
       Request({
           url: DPLA,
           onComplete: function(response) {
-            // Get the JSON data.
+               // Get the JSON data.
               json = response.json;
-            // Launch the popup/panel.
+              // Launch the popup/panel.
               panel.show();
               panel.port.emit("sendJSON", json);
-            //   panel.port.on("receiveJSON", function(payload) {
-            //       console.log(payload);
-            //   });
-
           }
       }).get();
   }
