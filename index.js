@@ -6,6 +6,8 @@ var desc;
 
 
 var panel = require("sdk/panel").Panel({
+  width: 500,
+  height: 500,
   contentURL: "./popup.html",
   contentScriptFile: "./my-panel.js"
 });

@@ -1,8 +1,8 @@
 {
-  "title": "DPLA Weazel",
-  "name": "dpla_weazel",
+  "title": "DPLA Weazl",
+  "name": "dpla_weazl",
   "version": "1.0.0",
-  "description": "Go diggin in the archives",
+  "description": "Go diggin' in the archives",
   "main": "index.js",
   "author": "Rob Bain",
   "engines": {
