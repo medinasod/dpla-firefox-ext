@@ -1,5 +1,14 @@
-var DPLA;
 var Request = require("sdk/request").Request;
+var DPLA;
+var json;
+var title;
+var desc;
+
+
+var panel = require("sdk/panel").Panel({
+  contentURL: "./popup.html",
+  contentScriptFile: "./my-panel.js"
+});
 
 
 
@@ -15,29 +24,22 @@ var menuItem = contextMenu.Item({
       Request({
           url: DPLA,
           onComplete: function(response) {
-            var json = response.json;
-
-            json.docs.forEach(function(items) {
-
-                console.log(JSON.stringify(items.sourceResource.title));
-                console.log(JSON.stringify(items.sourceResource.description));
-
-              });
-
-              // var items = json.docs;
-// for (var i=0; i < items.sourceResource; i++) {
-  // var title = items[i].title;
-  // var description = items[i].description;
-  // console.log("Title: " + title + "\nDescription: " + description + "\n\n");
-// }
-
-              //  items.forEach( function(item) {
-              //       console.log('title: ' + item.title + ' \n\n' + 'description: ' + item.description + '\n\n');
-              //   });
+            // Get the JSON data.
+              json = response.json;
+            // Launch the popup/panel.
+              panel.show();
+              panel.port.emit("sendJSON", json);
+            //   panel.port.on("receiveJSON", function(payload) {
+            //       console.log(payload);
+            //   });
 
           }
       }).get();
-
-
   }
 });
+
+
+
+
+
+
