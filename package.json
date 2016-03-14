@@ -1,16 +1,17 @@
 {
-  "title": "myUSF Admin Menu",
-  "name": "myusf_admin_menu",
-  "version": "1.0.2",
-  "description": "The fastest myUSF Admin Menu in the multiverse",
+  "title": "DPLA Weazel",
+  "name": "dpla_weazel",
+  "version": "1.0.0",
+  "description": "Go diggin in the archives",
   "main": "index.js",
   "author": "Rob Bain",
   "engines": {
     "firefox": ">=38.0a1"
   },
+  "repository": "https://github.com/medinasod/dpla-firefox-ext",
   "license": "MIT",
   "keywords": [
-    "Admin Menu, Fastest, Multiverse"
+    "DPLA, search tools"
   ],
   "devDependencies": {
     "gulp": "^3.9.1",
