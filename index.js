@@ -4,15 +4,12 @@ var json;
 var title;
 var desc;
 
-
 var panel = require("sdk/panel").Panel({
   width: 500,
   height: 500,
   contentURL: "./popup.html",
   contentScriptFile: "./my-panel.js"
 });
-
-
 
 var contextMenu = require("sdk/context-menu");
 var menuItem = contextMenu.Item({
@@ -35,9 +32,3 @@ var menuItem = contextMenu.Item({
       }).get();
   }
 });
-
-
-
-
-
-

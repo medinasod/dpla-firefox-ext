@@ -1,18 +1,20 @@
 var title;
 var desc;
 var list;
-var titleTextNode;   
-var descTextNode; 
+var titleTextNode;
+var descTextNode;
+
 
 self.port.on("sendJSON", function(json) {
 
     json.docs.forEach(function(items) {
         title = JSON.stringify(items.sourceResource.title);
         desc = JSON.stringify(items.sourceResource.description);
-        image = items.object;       
+        image = items.object;
         console.log(image);
         var node = document.createElement("li");                 // Create a <li> node
         var imgTag = document.createElement("img");                 // Create a <img> node
+
         imgTag.setAttribute('src', image);
         imgTag.setAttribute('alt', desc);
         titleTextNode = document.createTextNode(title);
